@@ -1,0 +1,117 @@
+services:
+  # Configurazioni del database
+  database:
+    host: "localhost"
+    port: 5432
+    name: "liquidazione_db"
+    user: "postgres"
+    password: ""  # Da impostare tramite variabile d'ambiente
+    ssl_mode: "prefer"
+    pool_size: 20
+    max_overflow: 10
+    pool_timeout: 30
+    pool_recycle: 1800
+    echo: false
+
+  # Configurazioni email
+  email:
+    smtp_server: ""  # Da impostare
+    smtp_port: 587
+    smtp_user: ""    # Da impostare
+    smtp_password: "" # Da impostare tramite variabile d'ambiente
+    from_email: ""   # Da impostare
+    use_tls: true
+    timeout: 10
+    templates_dir: "templates"
+    default_language: "it"
+
+  # Configurazioni AI
+  ai:
+    openai:
+      api_key: ""  # Da impostare tramite variabile d'ambiente
+      embedding_model: "text-embedding-ada-002"
+      llm_model: "gpt-3.5-turbo"
+      max_tokens: 2000
+      temperature: 0.0
+      timeout: 30
+      retry_attempts: 3
+      retry_delay: 1
+    
+    ocr:
+      engine: "tesseract"
+      language: "ita"
+      dpi: 300
+      timeout: 60
+      enhance_image: true
+      psm: 3
+      oem: 3
+
+  # Configurazioni vector store
+  vector_store:
+    engine: "pgvector"
+    collection_name: "documenti"
+    dimension: 1536
+    similarity_metric: "cosine"
+    index_type: "ivfflat"
+    index_lists: 100
+    probe_lists: 10
+    nprobe: 10
+    ef_search: 40
+    ef_construction: 200
+
+  # Configurazioni storage
+  storage:
+    type: "local"  # Opzioni: local, s3
+    local:
+      base_path: "storage"
+      max_size_mb: 50
+      allowed_extensions:
+        - ".pdf"
+        - ".doc"
+        - ".docx"
+        - ".txt"
+        - ".jpg"
+        - ".png"
+    s3:
+      bucket: ""
+      region: ""
+      access_key: ""  # Da impostare tramite variabile d'ambiente
+      secret_key: ""  # Da impostare tramite variabile d'ambiente
+      endpoint_url: ""
+
+  # Configurazioni cache
+  cache:
+    type: "redis"  # Opzioni: memory, redis
+    redis:
+      host: "localhost"
+      port: 6379
+      db: 0
+      password: ""  # Da impostare tramite variabile d'ambiente
+      ssl: false
+      timeout: 5
+    ttl:
+      default: 3600  # 1 ora
+      embeddings: 86400  # 24 ore
+      analysis: 43200  # 12 ore
+      search: 1800  # 30 minuti
+
+  # Configurazioni task queue
+  task_queue:
+    broker: "redis"  # Opzioni: redis, rabbitmq
+    redis:
+      host: "localhost"
+      port: 6379
+      db: 1
+      password: ""  # Da impostare tramite variabile d'ambiente
+    rabbitmq:
+      host: "localhost"
+      port: 5672
+      user: "guest"
+      password: "guest"
+      vhost: "/"
+    celery:
+      workers: 4
+      max_tasks_per_child: 100
+      task_timeout: 3600
+      retry_delay: 300
+      max_retries: 3 

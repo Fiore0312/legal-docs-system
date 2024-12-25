@@ -1,0 +1,32 @@
+{% extends "base_email.html" %}
+
+{% block content %}
+<h2>Benvenuto in {{ app_name }}!</h2>
+
+<p>Ciao {{ user_name }},</p>
+
+<p>Grazie per aver verificato il tuo account. Siamo felici di averti con noi!</p>
+
+<h3>Prossimi passi:</h3>
+<ol>
+    <li>Accedi al tuo account</li>
+    <li>Completa il tuo profilo</li>
+    <li>Inizia a utilizzare il sistema di gestione documenti</li>
+</ol>
+
+<p style="text-align: center;">
+    <a href="{{ login_url }}" class="button" style="color: #ffffff;">Accedi al tuo Account</a>
+</p>
+
+<h3>Hai bisogno di aiuto?</h3>
+<p>Ecco alcune risorse utili:</p>
+<ul>
+    <li>Consulta la nostra documentazione</li>
+    <li>Contatta il supporto tecnico</li>
+    <li>Esplora le funzionalità principali</li>
+</ul>
+
+<p>Se hai domande o hai bisogno di assistenza, non esitare a contattarci all'indirizzo {{ support_email }}.</p>
+
+<p>Cordiali saluti,<br>Il team di {{ app_name }}</p>
+{% endblock %} 

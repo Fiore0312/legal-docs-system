@@ -1,0 +1,71 @@
+agent:
+  # Configurazioni generali dell'agente
+  name: "LiquidazioneIA Agent"
+  version: "1.0.0"
+  description: "Agente per la gestione di documenti di liquidazione giudiziale"
+
+  # Capabilities dell'agente
+  capabilities:
+    - "Lettura e analisi documenti"
+    - "Classificazione automatica"
+    - "Estrazione entità"
+    - "Ricerca semantica"
+    - "Generazione riassunti"
+    - "Gestione configurazioni"
+    - "Aggiornamento documentazione"
+
+  # Configurazioni per l'elaborazione dei documenti
+  document_processing:
+    max_file_size_mb: 50
+    supported_formats:
+      - ".pdf"
+      - ".doc"
+      - ".docx"
+      - ".txt"
+      - ".jpg"
+      - ".png"
+    ocr_enabled: true
+    ocr_language: "ita"
+    chunk_size: 1000
+    chunk_overlap: 200
+
+  # Configurazioni per l'analisi del testo
+  text_analysis:
+    min_confidence: 0.7
+    max_tokens_per_request: 2000
+    classification_threshold: 0.8
+    similarity_threshold: 0.7
+    max_results: 10
+
+  # Configurazioni per la gestione della memoria
+  memory:
+    cache_enabled: true
+    cache_ttl_hours: 24
+    max_cached_items: 1000
+    vector_dimension: 1536
+
+  # Configurazioni per il logging
+  logging:
+    enabled: true
+    level: "INFO"
+    format: "%(asctime)s - %(name)s - %(levelname)s - %(message)s"
+    file: "logs/agent.log"
+
+  # Configurazioni per la sicurezza
+  security:
+    require_authentication: true
+    allowed_roles:
+      - "admin"
+      - "user"
+    rate_limit:
+      enabled: true
+      max_requests: 100
+      time_window_seconds: 60
+
+  # Configurazioni per la documentazione
+  documentation:
+    auto_update: true
+    versioning: true
+    backup_enabled: true
+    max_versions: 10
+    docs_path: "docs" 

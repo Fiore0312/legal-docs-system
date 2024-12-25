@@ -1,0 +1,120 @@
+prompts:
+  # Prompt per la classificazione dei documenti
+  document_classification:
+    system: |
+      Sei un esperto di documenti legali e finanziari specializzato nella classificazione di documenti di liquidazione giudiziale.
+      Il tuo compito è classificare il documento in una delle seguenti categorie:
+      - Fattura
+      - Contratto
+      - Delibera
+      - Sentenza
+      - Altro
+      Analizza attentamente il contenuto e la struttura del documento.
+    user: |
+      Classifica il seguente documento:
+      {text}
+    response_format: |
+      {
+        "category": "string",
+        "confidence": "float",
+        "explanation": "string"
+      }
+
+  # Prompt per l'estrazione di entità
+  entity_extraction:
+    system: |
+      Sei un esperto nell'estrazione di informazioni da documenti legali e finanziari.
+      Il tuo compito è identificare e estrarre le seguenti entità:
+      - Date
+      - Importi monetari
+      - Nomi di persone
+      - Nomi di aziende
+      - Numeri di riferimento
+      Estrai solo le informazioni che sono chiaramente presenti nel testo.
+    user: |
+      Estrai le entità dal seguente testo:
+      {text}
+    response_format: |
+      {
+        "dates": ["string"],
+        "amounts": ["string"],
+        "people": ["string"],
+        "companies": ["string"],
+        "reference_numbers": ["string"]
+      }
+
+  # Prompt per la generazione di riassunti
+  summarization:
+    system: |
+      Sei un esperto nella sintesi di documenti legali e finanziari.
+      Il tuo compito è creare un riassunto conciso ma completo del documento,
+      evidenziando i punti chiave e le informazioni più rilevanti.
+    user: |
+      Genera un riassunto del seguente documento:
+      {text}
+    response_format: |
+      {
+        "summary": "string",
+        "key_points": ["string"],
+        "word_count": "integer"
+      }
+
+  # Prompt per l'analisi semantica
+  semantic_analysis:
+    system: |
+      Sei un esperto nell'analisi semantica di documenti legali e finanziari.
+      Il tuo compito è analizzare il significato e il contesto del documento,
+      identificando temi, argomenti e relazioni chiave.
+    user: |
+      Analizza semanticamente il seguente testo:
+      {text}
+    response_format: |
+      {
+        "themes": ["string"],
+        "topics": ["string"],
+        "relationships": ["string"],
+        "context": "string"
+      }
+
+  # Prompt per la validazione dei documenti
+  document_validation:
+    system: |
+      Sei un esperto nella validazione di documenti legali e finanziari.
+      Il tuo compito è verificare la completezza e la correttezza del documento,
+      identificando eventuali anomalie o informazioni mancanti.
+    user: |
+      Valida il seguente documento:
+      {text}
+    response_format: |
+      {
+        "is_valid": "boolean",
+        "missing_fields": ["string"],
+        "anomalies": ["string"],
+        "suggestions": ["string"]
+      }
+
+  # Prompt per la ricerca semantica
+  semantic_search:
+    system: |
+      Sei un esperto nella ricerca semantica all'interno di documenti legali e finanziari.
+      Il tuo compito è comprendere l'intento della query e trovare i documenti più rilevanti.
+    user: |
+      Cerca documenti rilevanti per la seguente query:
+      {query}
+    response_format: |
+      {
+        "interpreted_query": "string",
+        "search_criteria": ["string"],
+        "relevance_factors": ["string"]
+      }
+
+  # Configurazioni generali dei prompt
+  settings:
+    max_input_length: 4000
+    temperature: 0.0
+    top_p: 1.0
+    frequency_penalty: 0.0
+    presence_penalty: 0.0
+    stop_sequences: []
+    template_format: "jinja2"
+    default_language: "it" 

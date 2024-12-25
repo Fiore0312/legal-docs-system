@@ -1,0 +1,20 @@
+{% extends "base_email.html" %}
+
+{% block content %}
+<h2>Verifica il tuo indirizzo email</h2>
+
+<p>Grazie per esserti registrato a {{ app_name }}. Per completare la registrazione, verifica il tuo indirizzo email cliccando sul pulsante qui sotto:</p>
+
+<p style="text-align: center;">
+    <a href="{{ verification_url }}" class="button" style="color: #ffffff;">Verifica Email</a>
+</p>
+
+<p>Se il pulsante non funziona, copia e incolla questo link nel tuo browser:</p>
+<p style="word-break: break-all;">{{ verification_url }}</p>
+
+<p>Questo link scadrà tra 24 ore per motivi di sicurezza.</p>
+
+<p>Se non hai richiesto questa verifica, ignora questa email.</p>
+
+<p>Cordiali saluti,<br>Il team di {{ app_name }}</p>
+{% endblock %} 
